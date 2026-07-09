@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bus-Eignungstraining</title>
+  <meta name="description" content="Realitätsnahes Übungstraining für die Eignungsuntersuchung zur Busfahrer-Ausbildung: Reaktion, Aufmerksamkeit, Konzentration, Orientierung, Logik und Deutschverständnis." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__inner">
+      <div class="badge">Übung · kein offizieller Test</div>
+      <h1>Bus-Eignungstraining</h1>
+      <p class="lead">Training für Reaktion, Aufmerksamkeit, Konzentration, Orientierung, Belastbarkeit, Logik und deutsches Aufgabenverständnis.</p>
+      <p class="subtle">Die arabische Hilfe ist zum Lernen da. Sobald sie bei einer Aufgabe geöffnet wird, gibt es für diese Aufgabe keine Punkte.</p>
+      <div class="hero__actions">
+        <button class="primary" id="startBtn">Training starten</button>
+        <button class="ghost" id="historyBtn">Fortschritt ansehen</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="app" id="app">
+    <section class="card intro" id="introCard">
+      <h2>Wichtig vor dem Start</h2>
+      <div class="grid two">
+        <div>
+          <h3>Was trainiert wird</h3>
+          <ul>
+            <li>einfache und schnelle Reaktion</li>
+            <li>Konzentration unter Zeitdruck</li>
+            <li>Aufmerksamkeit bei vielen Reizen</li>
+            <li>Orientierung im Linien- und Rasterbild</li>
+            <li>Belastbarkeit bei mehreren Regeln gleichzeitig</li>
+            <li>deutsche Anweisungen verstehen</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Was nicht möglich ist</h3>
+          <ul>
+            <li>Kein medizinischer Seh- oder Gesundheitstest.</li>
+            <li>Keine Garantie für das Bestehen der echten Untersuchung.</li>
+            <li>Keine Kopie geschützter Original-Testverfahren.</li>
+            <li>Die Ergebnisse werden nur im Browser gespeichert.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="notice">
+        <strong>Regel:</strong> Deutsch zählt. Arabisch hilft beim Lernen, aber dann zählt die Aufgabe als nicht bestanden.
+      </div>
+    </section>
+
+    <section class="card hidden" id="questionCard" aria-live="polite">
+      <div class="progressRow">
+        <div>
+          <div class="smallLabel" id="sectionLabel">Abschnitt</div>
+          <h2 id="taskTitle">Aufgabe</h2>
+        </div>
+        <div class="progressPill"><span id="stepNow">1</span>/<span id="stepTotal">1</span></div>
+      </div>
+      <div class="bar" aria-hidden="true"><div id="barFill"></div></div>
+      <p class="instruction" id="taskInstruction"></p>
+      <button class="arabicToggle" id="arabicBtn" type="button">Arabisch anzeigen – diese Aufgabe gibt dann 0 Punkte</button>
+      <div class="arabicBox hidden" id="arabicBox" dir="rtl"></div>
+      <div id="taskBody"></div>
+      <div class="taskFooter">
+        <button class="ghost" id="skipBtn" type="button">Überspringen</button>
+        <button class="primary" id="nextBtn" type="button">Weiter</button>
+      </div>
+    </section>
+
+    <section class="card hidden" id="reactionCard" aria-live="polite">
+      <div class="progressRow">
+        <div>
+          <div class="smallLabel" id="reactionSectionLabel">Abschnitt</div>
+          <h2 id="reactionTitle">Reaktion</h2>
+        </div>
+        <div class="progressPill"><span id="reactionRound">0</span>/<span id="reactionTotal">10</span></div>
+      </div>
+      <p class="instruction" id="reactionInstruction"></p>
+      <button class="arabicToggle" id="reactionArabicBtn" type="button">Arabisch anzeigen – dieser Abschnitt gibt dann 0 Punkte</button>
+      <div class="arabicBox hidden" id="reactionArabicBox" dir="rtl"></div>
+      <div class="reactionStage" id="reactionStage">
+        <div class="signal" id="signal">Warten…</div>
+      </div>
+      <div class="reactionStats" id="reactionStats">Bereit.</div>
+      <div class="taskFooter">
+        <button class="ghost" id="reactionStopBtn" type="button">Abschnitt beenden</button>
+        <button class="primary" id="reactionStartBtn" type="button">Start</button>
+      </div>
+    </section>
+
+    <section class="card hidden" id="resultsCard">
+      <h2>Auswertung</h2>
+      <div class="scoreHero">
+        <div class="scoreCircle"><span id="scorePercent">0%</span></div>
+        <div>
+          <h3 id="scoreTitle">Ergebnis</h3>
+          <p id="scoreText"></p>
+        </div>
+      </div>
+      <div id="sectionResults" class="sectionResults"></div>
+      <div class="notice" id="arabicNotice"></div>
+      <div class="taskFooter wrap">
+        <button class="primary" id="retryBtn" type="button">Noch einmal üben</button>
+        <button class="ghost" id="showHistoryBtn" type="button">Fortschritt ansehen</button>
+        <button class="danger" id="clearHistoryBtn" type="button">Verlauf löschen</button>
+      </div>
+    </section>
+
+    <section class="card hidden" id="historyCard">
+      <div class="progressRow">
+        <div>
+          <div class="smallLabel">lokal gespeichert</div>
+          <h2>Fortschritt</h2>
+        </div>
+        <button class="ghost" id="backBtn" type="button">Zurück</button>
+      </div>
+      <div id="historyBody"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Realitätsnahe Vorbereitung. Kein offizieller psychologischer, medizinischer oder augenärztlicher Test.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
