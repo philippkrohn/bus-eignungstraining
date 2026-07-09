@@ -3,55 +3,77 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bus-Eignungstraining</title>
-  <meta name="description" content="Realitätsnahes Übungstraining für die Eignungsuntersuchung zur Busfahrer-Ausbildung: Reaktion, Aufmerksamkeit, Konzentration, Orientierung, Logik und Deutschverständnis." />
+  <title>Bus-Eignungstraining · Vorbereitung psychologische Begutachtung</title>
+  <meta name="description" content="Interaktives, realitätsnahes Training für die Eignungsuntersuchung zur Busfahrer-Ausbildung: Reaktion, Aufmerksamkeit, Konzentration, Orientierung, Logik und Deutschverständnis." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="hero">
     <div class="hero__inner">
-      <div class="badge">Übung · kein offizieller Test</div>
+      <div class="badge">V2 · interaktiv · kein offizieller Test</div>
       <h1>Bus-Eignungstraining</h1>
-      <p class="lead">Training für Reaktion, Aufmerksamkeit, Konzentration, Orientierung, Belastbarkeit, Logik und deutsches Aufgabenverständnis.</p>
-      <p class="subtle">Die arabische Hilfe ist zum Lernen da. Sobald sie bei einer Aufgabe geöffnet wird, gibt es für diese Aufgabe keine Punkte.</p>
+      <p class="lead">Übung für deutsche Anweisungen, Konzentration, Aufmerksamkeit, Orientierung, Logik, Belastbarkeit und Reaktion.</p>
+      <p class="subtle">Arabisch darf zum Lernen geöffnet werden. Im Test zählt die Aufgabe dann mit 0 Punkten, weil die echte Situation auf Deutsch bewältigt werden muss.</p>
       <div class="hero__actions">
-        <button class="primary" id="startBtn">Training starten</button>
-        <button class="ghost" id="historyBtn">Fortschritt ansehen</button>
+        <button class="primary" id="quickStartBtn" type="button">Kurzen Prüfungsmodus starten</button>
+        <button class="ghost" id="historyTopBtn" type="button">Fortschritt ansehen</button>
       </div>
     </div>
   </header>
 
   <main class="app" id="app">
     <section class="card intro" id="introCard">
-      <h2>Wichtig vor dem Start</h2>
-      <div class="grid two">
+      <div class="sectionHead">
         <div>
+          <div class="smallLabel">Vorbereitung für die Eignung</div>
+          <h2>Trainingsmodus wählen</h2>
+          <p class="muted">Die Aufgaben werden bei jedem Durchgang neu gemischt. So kann länger geübt werden, ohne nur Antworten auswendig zu lernen.</p>
+        </div>
+      </div>
+
+      <div class="modeGrid">
+        <button class="modeCard" type="button" data-mode="learn">
+          <span class="modeTag">Lernen</span>
+          <strong>Lernmodus</strong>
+          <span>ca. 8–12 Minuten · mit Erklärung · gut für den Einstieg</span>
+        </button>
+        <button class="modeCard recommended" type="button" data-mode="short">
+          <span class="modeTag">Empfohlen</span>
+          <strong>Prüfungsmodus kurz</strong>
+          <span>ca. 12–18 Minuten · tägliches Training ohne Arabisch</span>
+        </button>
+        <button class="modeCard" type="button" data-mode="long">
+          <span class="modeTag">Ausdauer</span>
+          <strong>Prüfungsmodus lang</strong>
+          <span>ca. 30–45 Minuten · Konzentration länger halten</span>
+        </button>
+      </div>
+
+      <div class="grid two">
+        <div class="infoBox">
           <h3>Was trainiert wird</h3>
           <ul>
-            <li>einfache und schnelle Reaktion</li>
-            <li>Konzentration unter Zeitdruck</li>
-            <li>Aufmerksamkeit bei vielen Reizen</li>
-            <li>Orientierung im Linien- und Rasterbild</li>
-            <li>Belastbarkeit bei mehreren Regeln gleichzeitig</li>
-            <li>deutsche Anweisungen verstehen</li>
+            <li>deutsche Aufgaben genau lesen</li>
+            <li>Reaktion ohne Fehlklicks</li>
+            <li>Symbole und Unterschiede schnell erkennen</li>
+            <li>Routen, Linien und Raster verstehen</li>
+            <li>bei Zeitdruck ruhig bleiben</li>
           </ul>
         </div>
-        <div>
-          <h3>Was nicht möglich ist</h3>
+        <div class="infoBox">
+          <h3>Wichtig</h3>
           <ul>
-            <li>Kein medizinischer Seh- oder Gesundheitstest.</li>
-            <li>Keine Garantie für das Bestehen der echten Untersuchung.</li>
-            <li>Keine Kopie geschützter Original-Testverfahren.</li>
-            <li>Die Ergebnisse werden nur im Browser gespeichert.</li>
+            <li>Keine Kopie eines echten Testsystems.</li>
+            <li>Keine medizinische oder augenärztliche Prüfung.</li>
+            <li>Speicherung nur lokal im Browser.</li>
+            <li>Keine personenbezogenen Daten eingeben.</li>
           </ul>
         </div>
       </div>
-      <div class="notice">
-        <strong>Regel:</strong> Deutsch zählt. Arabisch hilft beim Lernen, aber dann zählt die Aufgabe als nicht bestanden.
-      </div>
+      <div class="notice"><strong>Ziel:</strong> erst verstehen, dann mehrere Durchgänge ohne arabische Hilfe schaffen.</div>
     </section>
 
-    <section class="card hidden" id="questionCard" aria-live="polite">
+    <section class="card hidden" id="testCard" aria-live="polite">
       <div class="progressRow">
         <div>
           <div class="smallLabel" id="sectionLabel">Abschnitt</div>
@@ -60,69 +82,63 @@
         <div class="progressPill"><span id="stepNow">1</span>/<span id="stepTotal">1</span></div>
       </div>
       <div class="bar" aria-hidden="true"><div id="barFill"></div></div>
+      <div class="statusRow">
+        <span id="modeLabel">Modus</span>
+        <span id="elapsedLabel">00:00</span>
+        <span id="scoreLiveLabel">0 Punkte</span>
+      </div>
       <p class="instruction" id="taskInstruction"></p>
       <button class="arabicToggle" id="arabicBtn" type="button">Arabisch anzeigen – diese Aufgabe gibt dann 0 Punkte</button>
       <div class="arabicBox hidden" id="arabicBox" dir="rtl"></div>
       <div id="taskBody"></div>
+      <div class="feedback hidden" id="feedbackBox"></div>
       <div class="taskFooter">
         <button class="ghost" id="skipBtn" type="button">Überspringen</button>
         <button class="primary" id="nextBtn" type="button">Weiter</button>
       </div>
     </section>
 
-    <section class="card hidden" id="reactionCard" aria-live="polite">
-      <div class="progressRow">
-        <div>
-          <div class="smallLabel" id="reactionSectionLabel">Abschnitt</div>
-          <h2 id="reactionTitle">Reaktion</h2>
-        </div>
-        <div class="progressPill"><span id="reactionRound">0</span>/<span id="reactionTotal">10</span></div>
-      </div>
-      <p class="instruction" id="reactionInstruction"></p>
-      <button class="arabicToggle" id="reactionArabicBtn" type="button">Arabisch anzeigen – dieser Abschnitt gibt dann 0 Punkte</button>
-      <div class="arabicBox hidden" id="reactionArabicBox" dir="rtl"></div>
-      <div class="reactionStage" id="reactionStage">
-        <div class="signal" id="signal">Warten…</div>
-      </div>
-      <div class="reactionStats" id="reactionStats">Bereit.</div>
-      <div class="taskFooter">
-        <button class="ghost" id="reactionStopBtn" type="button">Abschnitt beenden</button>
-        <button class="primary" id="reactionStartBtn" type="button">Start</button>
-      </div>
-    </section>
-
     <section class="card hidden" id="resultsCard">
-      <h2>Auswertung</h2>
+      <div class="sectionHead">
+        <div>
+          <div class="smallLabel" id="resultModeLabel">Auswertung</div>
+          <h2>Ergebnis</h2>
+        </div>
+      </div>
       <div class="scoreHero">
-        <div class="scoreCircle"><span id="scorePercent">0%</span></div>
+        <div class="scoreCircle" id="scoreCircle"><span id="scorePercent">0%</span></div>
         <div>
           <h3 id="scoreTitle">Ergebnis</h3>
           <p id="scoreText"></p>
+          <div class="badgeRow" id="badgeRow"></div>
         </div>
       </div>
       <div id="sectionResults" class="sectionResults"></div>
       <div class="notice" id="arabicNotice"></div>
       <div class="taskFooter wrap">
-        <button class="primary" id="retryBtn" type="button">Noch einmal üben</button>
+        <button class="primary" id="repeatModeBtn" type="button">Gleichen Modus erneut starten</button>
+        <button class="ghost" id="chooseModeBtn" type="button">Anderen Modus wählen</button>
         <button class="ghost" id="showHistoryBtn" type="button">Fortschritt ansehen</button>
-        <button class="danger" id="clearHistoryBtn" type="button">Verlauf löschen</button>
       </div>
     </section>
 
     <section class="card hidden" id="historyCard">
       <div class="progressRow">
         <div>
-          <div class="smallLabel">lokal gespeichert</div>
+          <div class="smallLabel">lokal im Browser gespeichert</div>
           <h2>Fortschritt</h2>
         </div>
         <button class="ghost" id="backBtn" type="button">Zurück</button>
       </div>
       <div id="historyBody"></div>
+      <div class="taskFooter wrap historyActions">
+        <button class="danger" id="clearHistoryBtn" type="button">Verlauf löschen</button>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>Realitätsnahe Vorbereitung. Kein offizieller psychologischer, medizinischer oder augenärztlicher Test.</p>
+    <p>Realitätsnahe Übung. Keine Garantie für das Bestehen der echten psychologischen, medizinischen oder augenärztlichen Untersuchung.</p>
   </footer>
 
   <script src="app.js"></script>
